@@ -26,15 +26,15 @@ const Tabs=()=> {
                 }
             }}
     >
-      <Tab.Screen name="RecentExpenses" component={RecentExpenses} options={{ 
+      <Tab.Screen name="AllExpenses" component={AllExpenses} options={{ 
         tabBarIcon: ({focused}) => (<View style={{alignItems:'center',justifyContent:'center',top:Platform.OS === 'ios'?15:0}}>
                               <Icon name="appstore1" color={focused ? Colors.primaryColor:Colors.fontColor} size={25} />
                               {focused && <Text style={{color:Colors.primaryColor,marginTop:8 }}>All Expenses</Text>}
                           </View> )
         }}/>
-      <Tab.Screen name="AllExpenses" component={AllExpenses} options={{ 
+      <Tab.Screen name="RecentExpenses" component={ RecentExpenses} options={{ 
         tabBarIcon: ({focused}) => (<View style={{alignItems:'center',justifyContent:'center',top:Platform.OS === 'ios'?15:0}}>
-                              <Ionicons name="reader" color={focused ? Colors.primaryColor:Colors.fontColor} size={25} />
+                              <Ionicons name="wallet" color={focused ? Colors.primaryColor:Colors.fontColor} size={25} />
                               {focused && <Text style={{color:Colors.primaryColor,marginTop:8 }}>Recent Expenses</Text>}
                           </View> )
         }}/>
