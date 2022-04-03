@@ -5,7 +5,7 @@ import Colors from '../constants/Colors';
 const RecentExpenses = () => {
   return (
     <SafeAreaView style={styles.sectionContainer}>
-               <Text style={styles.title}>THis is The Profile screen</Text>
+               <Text style={styles.title}>Your Recent Expenses</Text>
     </SafeAreaView>
   )
 };

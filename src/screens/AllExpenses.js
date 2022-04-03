@@ -5,7 +5,7 @@ import Colors from '../constants/Colors';
 const AllExpenses = props => {
   return (
     <SafeAreaView style={styles.sectionContainer}>
-     
+      <Text>All Expenses</Text>
     </SafeAreaView>
   )
 };

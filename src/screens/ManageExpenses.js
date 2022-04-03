@@ -8,14 +8,13 @@ const ManageExpenses = props => {
 
   return (
     <SafeAreaView style={styles.sectionContainer}>
-     
+        <Text>Manage Your Expenses</Text>
     </SafeAreaView>
   )
 };
 
 const styles = StyleSheet.create({
   sectionContainer: {
-    // paddingHorizontal: 10,
     backgroundColor:Colors.accnetColor,
     flex:1,
     justifyContent:'center', alignItems:'center',
