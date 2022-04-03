@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 import {RecentExpenses, AllExpenses} from '../screens'
 import Colors from '../constants/Colors';
+import { GlobalStyles } from '../constants/styles';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,7 +16,7 @@ const Tabs=()=> {
     <Tab.Navigator
             screenOptions={{
                 tabBarShowLabel: false,
-                headerShown:false,
+                headerStyle:{backgroundColor:GlobalStyles.colors.primary50},
                 tabBarStyle:{
                   position:'absolute', bottom:25, right:20, left:20,
                   elevation:0,
@@ -26,13 +27,13 @@ const Tabs=()=> {
                 }
             }}
     >
-      <Tab.Screen name="AllExpenses" component={AllExpenses} options={{ 
+      <Tab.Screen name="All Expenses" component={AllExpenses} options={{ 
         tabBarIcon: ({focused}) => (<View style={{alignItems:'center',justifyContent:'center',top:Platform.OS === 'ios'?15:0}}>
                               <Icon name="appstore1" color={focused ? Colors.primaryColor:Colors.fontColor} size={25} />
                               {focused && <Text style={{color:Colors.primaryColor,marginTop:8 }}>All</Text>}
                           </View> )
         }}/>
-      <Tab.Screen name="RecentExpenses" component={ RecentExpenses} options={{ 
+      <Tab.Screen name="Recent Expenses" component={ RecentExpenses} options={{ 
         tabBarIcon: ({focused}) => (<View style={{alignItems:'center',justifyContent:'center',top:Platform.OS === 'ios'?15:0}}>
                               <Ionicons name="wallet" color={focused ? Colors.primaryColor:Colors.fontColor} size={25} />
                               {focused && <Text style={{color:Colors.primaryColor,marginTop:8 }}>Recent</Text>}
