@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ExpensesSummary = () => {
+const ExpensesSummary = ({periodName}) => {
   return (
     <View>
-        <Text>In Last 7 Days</Text>
+        <Text>{periodName}</Text>
         <Text> $ 367.34</Text>
     </View>
   )

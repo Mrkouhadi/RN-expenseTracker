@@ -5,7 +5,7 @@ import ExpensesSummary from './ExpensesSummary'
 
 const ExpensesOutput = () => {
   return <View>
-            <ExpensesSummary />
+            <ExpensesSummary periodName={"last 10 days"}/>
             <ExpensesList />
          </View>
 }

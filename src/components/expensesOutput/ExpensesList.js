@@ -5,4 +5,4 @@ const ExpensesList = () => {
   return <FlatList data={} renderItem={} />
 }
 
-export default ExpensesList
+export default ExpensesList;
