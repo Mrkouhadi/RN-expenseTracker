@@ -1,10 +1,9 @@
 import React from 'react'
-import { StyleSheet,SafeAreaView, Text, Button } from 'react-native'
+import { StyleSheet } from 'react-native'
 import ExpensesOutput from '../components/expensesOutput/ExpensesOutput';
-import Colors from '../constants/Colors';
 
 const AllExpenses = props => {
-  return  <ExpensesOutput expensesPeriod="total"/>
+  return  <ExpensesOutput expensesPeriod="Total"/>
 };
 
 const styles = StyleSheet.create({
