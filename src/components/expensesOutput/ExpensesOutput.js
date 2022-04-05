@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { FlatList, View } from 'react-native'
 
 const ExpensesOutput = () => {
   return <View>
@@ -7,6 +7,7 @@ const ExpensesOutput = () => {
                 <Text>In Last 7 Days</Text>
                 <Text> $ 367.34</Text>
             </View>
+            {/* <FlatList data={} renderItem={} /> */}
     </View>
 }
 
