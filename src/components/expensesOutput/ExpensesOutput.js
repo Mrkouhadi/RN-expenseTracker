@@ -13,6 +13,9 @@ const DUMMY_EXPENSES = [
     {
         id:'e3', description:'a black rain coat', amount:115.00
     },
+    {
+        id:'e4', description:'a blue pai of shoes', amount:85.99
+    },
 ]
 const ExpensesOutput = ({expenses, expensesPeriod}) => {
   return <View>
