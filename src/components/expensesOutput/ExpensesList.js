@@ -1,7 +1,7 @@
 import React from 'react'
 import { FlatList } from 'react-native'
 
-const ExpensesList = () => {
+const ExpensesList = ({expenses}) => {
   return <FlatList data={} renderItem={} />
 }
 
