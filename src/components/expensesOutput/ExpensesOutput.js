@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import ExpensesList from './ExpensesList'
 import ExpensesSummary from './ExpensesSummary'
 
@@ -18,10 +18,16 @@ const DUMMY_EXPENSES = [
     },
 ]
 const ExpensesOutput = ({expenses, expensesPeriod}) => {
-  return <View>
+  return <View style={styles.constainer}>
             <ExpensesSummary expenses={DUMMY_EXPENSES} periodName={expensesPeriod}/>
             <ExpensesList expenses={DUMMY_EXPENSES}/>
          </View>
 }
-
+const styles = StyleSheet.create({
+    constainer:{
+        backgroundColor:'pink',
+        paddingHorizontal:24,
+        flex:1
+    }
+})
 export default ExpensesOutput
