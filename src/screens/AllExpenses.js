@@ -1,11 +1,12 @@
 import React from 'react'
 import { StyleSheet,SafeAreaView, Text, Button } from 'react-native'
+import ExpensesOutput from '../components/expensesOutput/ExpensesOutput';
 import Colors from '../constants/Colors';
 
 const AllExpenses = props => {
   return (
     <SafeAreaView style={styles.sectionContainer}>
-      <Text>All Expenses</Text>
+      <ExpensesOutput expensesPeriod="total"/>
     </SafeAreaView>
   )
 };

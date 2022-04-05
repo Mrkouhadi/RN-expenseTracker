@@ -1,11 +1,12 @@
 import React from 'react'
 import { View, StyleSheet,SafeAreaView,Text } from 'react-native'
+import ExpensesOutput from '../components/expensesOutput/ExpensesOutput';
 import Colors from '../constants/Colors';
 
-const RecentExpenses = () => {
+const RecentExpenses = (props) => {
   return (
     <SafeAreaView style={styles.sectionContainer}>
-               <Text style={styles.title}>Your Recent Expenses</Text>
+        <ExpensesOutput expensesPeriod="in the last 7 Days"/>
     </SafeAreaView>
   )
 };
