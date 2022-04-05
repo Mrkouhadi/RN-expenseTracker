@@ -5,16 +5,34 @@ import ExpensesSummary from './ExpensesSummary'
 
 const DUMMY_EXPENSES = [
     {
-        id:'e1', description:'a pair of plack pants', amount:35.89, date:new Date('06-19-2021')
+        id:'e1', description:'a pair of plack pants', amount:35.89, date:new Date('2021-09-06')
     },
     {
-        id:'e2', description:'New Iphone 13', amount:960.99, date:new Date('06-27-2021')
+        id:'e2', description:'New Iphone 13', amount:960.99, date:new Date('2021-09-07')
     },
     {
-        id:'e3', description:'a black rain coat', amount:115.00, date:new Date('07-01-2021')
+        id:'e3', description:'a black rain coat', amount:115.00, date:new Date('2021-10-06')
     },
     {
-        id:'e4', description:'a blue pai of shoes', amount:85.99, date:new Date('07-02-2021')
+        id:'e4', description:'a blue pai of shoes', amount:85.99, date:new Date('2021-11-09')
+    },
+    {
+        id:'e5', description:'a pair of plack pants', amount:35.89, date:new Date('2021-09-06')
+    },
+    {
+        id:'e6', description:'New Iphone 13', amount:960.99, date:new Date('2021-09-07')
+    },
+    {
+        id:'e7', description:'a black rain coat', amount:115.00, date:new Date('2021-10-06')
+    },
+    {
+        id:'e8', description:'a blue pai of shoes', amount:85.99, date:new Date('2021-11-09')
+    },
+    {
+        id:'e9', description:'a black rain coat', amount:115.00, date:new Date('2021-10-06')
+    },
+    {
+        id:'e10', description:'a blue pai of shoes', amount:85.99, date:new Date('2021-11-09')
     },
 ]
 const ExpensesOutput = ({expenses, expensesPeriod}) => {
@@ -26,7 +44,8 @@ const ExpensesOutput = ({expenses, expensesPeriod}) => {
 const styles = StyleSheet.create({
     constainer:{
         backgroundColor:'pink',
-        paddingHorizontal:24,
+        paddingHorizontal:10, paddingVertical:10,
+        paddingBottom:0,
         flex:1
     }
 })

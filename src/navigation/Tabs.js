@@ -17,7 +17,7 @@ const Tabs=()=> {
                 tabBarShowLabel: false,
                 headerStyle:{backgroundColor:GlobalStyles.colors.error50},
                 tabBarStyle:{
-                  position:'absolute', bottom:25, right:20, left:20,
+                  position:'absolute', bottom:20, right:10, left:10,
                   elevation:0,
                   borderRadius:15,
                   backgroundColor:GlobalStyles.colors.error50,
