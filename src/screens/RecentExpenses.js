@@ -14,6 +14,4 @@ const RecentExpenses = (props) => {
   })
   return<ExpensesOutput fallbackText="No Recenet Expenses Yet !!!" expenses={recentExpenses} expensesPeriod="Last 7 Days"/>
 };
-
-
 export default RecentExpenses

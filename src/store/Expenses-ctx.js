@@ -1,12 +1,7 @@
 import React, { createContext, useReducer } from "react";
 import DUMMY_DATA from '../dummy_data';
 
-export const ExpensesCtx = createContext({
-    expenses:[],
-    addExpense:({description, amount, date})=>{},
-    deleteExpense:(id)=>{},
-    updateExpense:(id, {description, amount, date})=>{},
-});
+export const ExpensesCtx = createContext();
 
 const ExpenseReducer = (state, action) =>{
     switch (action.type) {
@@ -45,7 +40,7 @@ const ExpensesCtxProvider = ({children}) =>{
         expenses:expenseState,
         addExpense:addExpense,
         deleteExpense:deleteExpense,
-        updateExpense:updateExpense
+        updateExpense:updateExpense,
     }
     return <ExpensesCtx.Provider value={value}>
                 {children}  
