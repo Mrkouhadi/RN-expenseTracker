@@ -1,13 +1,13 @@
 import { createContext } from "react";
 
-const ExpensesCtx = createContext({
+export const ExpensesCtx = createContext({
     expenses:[],
     addExpense:({description, amount, date})=>{},
-    deleteExpense:({id})=>{},
-    updateExpense:({description, amount, date})=>{},
+    deleteExpense:(id)=>{},
+    updateExpense:(id, {description, amount, date})=>{},
 });
 
-const ExpensesProvider = ({children}) =>{
+const ExpensesCtxProvider = ({children}) =>{
 
     const value={
 
@@ -17,4 +17,4 @@ const ExpensesProvider = ({children}) =>{
            </ExpensesCtx.Provider>
 }
 
-export default ExpensesProvider;
+export default ExpensesCtxProvider;
