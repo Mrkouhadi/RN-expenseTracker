@@ -15,14 +15,18 @@ const ManageExpenses = ({route, navigation}) => {
   },[navigation,isEditing]);
 
   const deleteHandler =()=>{
-    console.log(expenseId);
+    navigation.goBack();
   }
+  const cancelHandler = ()=>{
+    navigation.goBack();
+  };
+  const confirmHandler = ()=>{
+    navigation.goBack();
+  };
   return  <View style={styles.container}>
-            <View style={styles.btnContainer}> 
-                <CustomBtn mode="flat" onPress={()=>{}}>Cancel</CustomBtn>
-                <CustomBtn mode="" onPress={()=>{}}>
-                  CONFIRM
-                </CustomBtn>
+            <View style={styles.btnContainer}>
+              <CustomBtn style={styles.btn} mode="flat" onPress={cancelHandler}>CANCEL</CustomBtn>
+              <CustomBtn style={styles.btn} mode="" onPress={confirmHandler}>{isEditing?'UPDATE':'ADD'}</CustomBtn>
             </View>
             {
              isEditing && <View style={styles.DelContainer}>
@@ -44,7 +48,10 @@ const styles=StyleSheet.create({
   },
   btnContainer:{
     flexDirection:'row',
-    justifyContent:'space-between'
+    justifyContent:'space-between', alignItems:'center'
+  },
+  btn:{
+    minWidth:120
   }
 })
 export default ManageExpenses;
