@@ -1,10 +1,38 @@
-import React from 'react'
-import { View, StyleSheet, Text, Pressable, ScrollView } from 'react-native'
+import React, { useLayoutEffect } from 'react'
+import { View, StyleSheet, Text, ScrollView } from 'react-native'
+import IconBtn from '../components/ui/IconBtn';
+import { GlobalStyles } from '../constants/styles';
 
-const ManageExpenses = props => {
-  // const { id, user } = props.route.params;  
+const ManageExpenses = ({route, navigation}) => {
+  const expenseId = route.params?.id;  
+  const isEditing = !!expenseId; // if we got an id, it will return true, otherwise, false
+  
+  useLayoutEffect(()=>{
+    navigation.setOptions({
+      title:isEditing ? "Edit Your Expense" : "Add New Expense"
+    })
+  },[navigation,isEditing]);
 
-  return  <Text>Manage Your Expenses</Text>
+  const deleteHandler =()=>{
+    console.log(expenseId);
+  }
+  return  <View style={styles.container}>
+            {
+             isEditing && <View style={styles.DelContainer}>
+                            <IconBtn onPress={deleteHandler} iconName="delete" color={GlobalStyles.colors.error50} size={35}/>
+                          </View>
+            }
+          </View>
 };
-
-export default ManageExpenses
+const styles=StyleSheet.create({
+  container:{
+    flex:1,
+    backgroundColor:GlobalStyles.colors.gray700,
+    padding:24,
+  },
+  DelContainer:{
+    marginTop:16, paddingTop:8,
+    borderTopWidth:2, borderTopColor:GlobalStyles.colors.primary100,
+  }
+})
+export default ManageExpenses;

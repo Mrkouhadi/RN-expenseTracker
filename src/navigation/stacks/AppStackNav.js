@@ -9,7 +9,11 @@ const  AppStackNav = () => {
       <Stack.Navigator >
         <Stack.Screen name="Tabs" component={Tabs} options={{headerShown:false}} />
         <Stack.Screen name="All Expenses" component={AllExpenses} options={{headerShown:false}} />
-        <Stack.Screen name="Manage Expenses" component={ManageExpenses} options={{headerShown:true}}/>
+        <Stack.Screen name="Manage Expenses" component={ManageExpenses} 
+                      options={{
+                            presentation:'modal'
+                          }}
+          />
       </Stack.Navigator>
   );
 }
