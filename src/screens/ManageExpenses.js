@@ -1,26 +1,34 @@
-import React, { useLayoutEffect } from 'react'
+import React, { useContext, useLayoutEffect } from 'react'
 import { View, StyleSheet, Text, ScrollView } from 'react-native'
 import CustomBtn from '../components/ui/CustomBtn';
 import IconBtn from '../components/ui/IconBtn';
 import { GlobalStyles } from '../constants/styles';
+import { ExpensesCtx } from '../store/Expenses-ctx';
 
 const ManageExpenses = ({route, navigation}) => {
   const expenseId = route.params?.id;  
   const isEditing = !!expenseId; // if we got an id, it will return true, otherwise, false
-  
+  const ourExpenseCtx = useContext(ExpensesCtx);
+
   useLayoutEffect(()=>{
     navigation.setOptions({
       title:isEditing ? "Update Your Expense" : "Add New Expense"
     })
   },[navigation,isEditing]);
 
-  const deleteHandler =()=>{
+  const deleteHandler =() =>{
+    ourExpenseCtx.deleteExpense(expenseId)
     navigation.goBack();
   }
-  const cancelHandler = ()=>{
+  const cancelHandler = () =>{
     navigation.goBack();
   };
   const confirmHandler = ()=>{
+    if(isEditing){
+      ourExpenseCtx.updateExpense(expenseId,{description:'[UPDATED]blue shirt', amount:88888, date:new Date()})
+    }else{
+      ourExpenseCtx.addExpense({description:'blue shirt', amount:88888, date:new Date()});
+    }
     navigation.goBack();
   };
   return  <View style={styles.container}>

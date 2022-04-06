@@ -1,12 +1,16 @@
 import React from 'react';
-import {StyleSheet, } from 'react-native';
+import {StatusBar, StyleSheet, } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import AppStackNav from './src/navigation/stacks/AppStackNav';
+import ExpensesCtxProvider from './src/store/Expenses-ctx';
 
 const App = () => {
-  return  <NavigationContainer>
-            <AppStackNav />
-          </NavigationContainer>
+  return <ExpensesCtxProvider>
+            <NavigationContainer>
+              <AppStackNav />
+            </NavigationContainer>
+          </ExpensesCtxProvider>
+        
 };
 
 const styles = StyleSheet.create({

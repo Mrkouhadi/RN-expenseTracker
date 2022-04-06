@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet } from 'react-native'
 import ExpensesOutput from '../components/expensesOutput/ExpensesOutput';
+import { ExpensesCtx } from '../store/Expenses-ctx';
 
 const AllExpenses = props => {
-  return  <ExpensesOutput expensesPeriod="Total"/>
+  const ourExpenseCtx = useContext(ExpensesCtx);
+  return  <ExpensesOutput fallbackText="No Expenses Registered so Far !" expenses={ourExpenseCtx.expenses} expensesPeriod="Total"/>
 };
 
 const styles = StyleSheet.create({

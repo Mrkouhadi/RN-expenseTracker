@@ -1,52 +1,37 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 import ExpensesList from './ExpensesList'
 import ExpensesSummary from './ExpensesSummary'
 
-const DUMMY_EXPENSES = [
-    {
-        id:'e1', description:'a pair of plack pants', amount:35.89, date:new Date('2021-09-06')
-    },
-    {
-        id:'e2', description:'New Iphone 13', amount:960.99, date:new Date('2021-09-07')
-    },
-    {
-        id:'e3', description:'a black rain coat', amount:115.00, date:new Date('2021-10-06')
-    },
-    {
-        id:'e4', description:'a blue pai of shoes', amount:85.99, date:new Date('2021-11-09')
-    },
-    {
-        id:'e5', description:'a pair of plack pants', amount:35.89, date:new Date('2021-09-06')
-    },
-    {
-        id:'e6', description:'New Iphone 13', amount:960.99, date:new Date('2021-09-07')
-    },
-    {
-        id:'e7', description:'a black rain coat', amount:115.00, date:new Date('2021-10-06')
-    },
-    {
-        id:'e8', description:'a blue pai of shoes', amount:85.99, date:new Date('2021-11-09')
-    },
-    {
-        id:'e9', description:'a black rain coat', amount:115.00, date:new Date('2021-10-06')
-    },
-    {
-        id:'e10', description:'a blue pai of shoes', amount:85.99, date:new Date('2021-11-09')
-    },
-]
-const ExpensesOutput = ({expenses, expensesPeriod}) => {
+const ExpensesOutput = ({expenses, expensesPeriod, fallbackText}) => {
+
+    let content = <Text style={styles.fallback}>{fallbackText}</Text>
+
+    if(expenses.length > 0){
+        content = <ExpensesList expenses={expenses}/>;
+    }
+
   return <View style={styles.constainer}>
-            <ExpensesSummary expenses={DUMMY_EXPENSES} periodName={expensesPeriod}/>
-            <ExpensesList expenses={DUMMY_EXPENSES}/>
+            <ExpensesSummary expenses={expenses} periodName={expensesPeriod}/>
+            {content}
          </View>
 }
+
 const styles = StyleSheet.create({
     constainer:{
         backgroundColor:'pink',
         paddingHorizontal:10, paddingVertical:10,
         paddingBottom:0,
         flex:1
+    },
+    fallback:{
+        fontSize:50,
+        color:'red',
+        fontWeight:'bold',
+        letterSpacing:2,
+        textAlign:'center',
+        marginTop:150,
+        marginHorizontal:50,
     }
 })
 export default ExpensesOutput
