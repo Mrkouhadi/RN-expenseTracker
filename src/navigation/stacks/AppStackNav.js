@@ -8,8 +8,8 @@ const  AppStackNav = () => {
   return (
       <Stack.Navigator >
         <Stack.Screen name="Tabs" component={Tabs} options={{headerShown:false}} />
-        <Stack.Screen name="AllExpenses" component={AllExpenses} options={{headerShown:false}} />
-        <Stack.Screen name="ManageExpenses" component={ManageExpenses} options={{headerShown:false}}/>
+        <Stack.Screen name="All Expenses" component={AllExpenses} options={{headerShown:false}} />
+        <Stack.Screen name="Manage Expenses" component={ManageExpenses} options={{headerShown:true}}/>
       </Stack.Navigator>
   );
 }

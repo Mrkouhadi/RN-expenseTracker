@@ -10,7 +10,7 @@ import IconBtn from '../components/ui/IconBtn';
 
 const Tab = createBottomTabNavigator();
 
-const Tabs=()=> {
+const Tabs=(props)=> {
 
   return (
     <Tab.Navigator
@@ -26,7 +26,7 @@ const Tabs=()=> {
                   ...styles.shadow,
                 },
                 headerRight:({tintColor}) =>  <IconBtn iconName="pluscircleo" color={tintColor} size={30} 
-                                            onPress={()=>{}}
+                                            onPress={()=>props.navigation.navigate("Manage Expenses")}
                                    />
             }}
     >
