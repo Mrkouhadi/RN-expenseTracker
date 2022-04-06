@@ -10,7 +10,7 @@ const ManageExpenses = ({route, navigation}) => {
   
   useLayoutEffect(()=>{
     navigation.setOptions({
-      title:isEditing ? "Edit Your Expense" : "Add New Expense"
+      title:isEditing ? "Update Your Expense" : "Add New Expense"
     })
   },[navigation,isEditing]);
 
