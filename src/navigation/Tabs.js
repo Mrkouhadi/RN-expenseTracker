@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 import {RecentExpenses, AllExpenses} from '../screens'
 import { GlobalStyles } from '../constants/styles';
+import IconBtn from '../components/ui/IconBtn';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,7 +24,10 @@ const Tabs=()=> {
                   backgroundColor:GlobalStyles.colors.error50,
                   height:70,
                   ...styles.shadow,
-                }
+                },
+                headerRight:({tintColor}) =>  <IconBtn iconName="pluscircleo" color={tintColor} size={30} 
+                                            onPress={()=>{}}
+                                   />
             }}
     >
       <Tab.Screen name="All Expenses" component={AllExpenses} options={{ 
