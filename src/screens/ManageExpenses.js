@@ -1,5 +1,6 @@
 import React, { useContext, useLayoutEffect } from 'react'
 import { View, StyleSheet, Text, ScrollView } from 'react-native'
+import ExpenseForm from '../components/manageExpenses/ExpenseForm';
 import CustomBtn from '../components/ui/CustomBtn';
 import IconBtn from '../components/ui/IconBtn';
 import { GlobalStyles } from '../constants/styles';
@@ -32,6 +33,7 @@ const ManageExpenses = ({route, navigation}) => {
     navigation.goBack();
   };
   return  <View style={styles.container}>
+            <ExpenseForm />
             <View style={styles.btnContainer}>
               <CustomBtn style={styles.btn} mode="flat" onPress={cancelHandler}>CANCEL</CustomBtn>
               <CustomBtn style={styles.btn} mode="" onPress={confirmHandler}>{isEditing?'UPDATE':'ADD'}</CustomBtn>
