@@ -4,10 +4,10 @@ import { StyleSheet, View } from 'react-native'
 import Input from './Input';
 import CustomBtn from '../../components/ui/CustomBtn';
 
-const ExpenseForm = ({onCancel, submitFormLabel, onSubmit, selectedExpense}) => {
+const ExpenseForm = ({onCancel, submitFormLabel, onSubmit, defaultValues}) => {
 
     const [inputValues, setInputValues] = useState({
-        amount:`${selectedExpense.amount}`, date:selectedExpense.date, description:selectedExpense.description,
+        amount:`${defaultValues.amount}`, date:defaultValues.date, description:defaultValues.description,
     });
     const inputChangeHandler =(inputIdentifier, inputvalue) =>{
         setInputValues(currInputValues => {
