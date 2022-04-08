@@ -21,14 +21,20 @@ const ExpenseForm = ({onCancel, submitFormLabel, onSubmit, defaultValues}) => {
             }
         })
     }
-      const onSubmitHandler = ()=>{
-            const expenseDataValues = {
+    const onSubmitHandler = ()=>{
+            const expenseValues = {
                 amount:+inputValues.amount,
                 date:new Date(inputValues.date),
                 description:inputValues.description,
-            } 
-            onSubmit(expenseDataValues);
-      };
+            };
+            const isValidAmount = !isNaN(expenseValues.amount) && expenseValues.amount > 0;
+            const isValidDate = expenseValues.date.toString() !== 'Invalid Date';
+            const isValidDesc = expenseValues.description.trim().length > 0;
+
+            if(!isValidAmount || !isValidDate || !isValidDesc) return;
+
+            onSubmit(expenseValues);
+    };
 
   return <View>
             <Input label="Amount" inputConfig={{
