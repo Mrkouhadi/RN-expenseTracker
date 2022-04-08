@@ -1,7 +1,6 @@
 import React, { useContext, useLayoutEffect } from 'react'
-import { View, StyleSheet, Text, ScrollView } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import ExpenseForm from '../components/manageExpenses/ExpenseForm';
-import CustomBtn from '../components/ui/CustomBtn';
 import IconBtn from '../components/ui/IconBtn';
 import { GlobalStyles } from '../constants/styles';
 import { ExpensesCtx } from '../store/Expenses-ctx';
@@ -24,20 +23,19 @@ const ManageExpenses = ({route, navigation}) => {
   const cancelHandler = () =>{
     navigation.goBack();
   };
-  const confirmHandler = ()=>{
-    if(isEditing){
-      ourExpenseCtx.updateExpense(expenseId,{description:'[UPDATED]blue shirt', amount:88888, date:new Date()})
-    }else{
-      ourExpenseCtx.addExpense({description:'blue shirt', amount:88888, date:new Date()});
-    }
-    navigation.goBack();
-  };
+
+  const confirmHandler = DATA =>{
+        if(isEditing){
+          ourExpenseCtx.updateExpense(expenseId, DATA)
+        }else{
+          ourExpenseCtx.addExpense(DATA);
+        }
+        navigation.goBack();
+};
+
   return  <View style={styles.container}>
-            <ExpenseForm />
-            <View style={styles.btnContainer}>
-              <CustomBtn style={styles.btn} mode="flat" onPress={cancelHandler}>CANCEL</CustomBtn>
-              <CustomBtn style={styles.btn} mode="" onPress={confirmHandler}>{isEditing?'UPDATE':'ADD'}</CustomBtn>
-            </View>
+            <ExpenseForm onSubmit={confirmHandler} submitFormLabel={isEditing?'UPDATE':'ADD'} onCancel={cancelHandler} />
+
             {
              isEditing && <View style={styles.DelContainer}>
                             <IconBtn onPress={deleteHandler} iconName="delete" color={GlobalStyles.colors.error50} size={35}/>
@@ -55,13 +53,6 @@ const styles=StyleSheet.create({
     marginTop:16, paddingTop:8,
     borderTopWidth:2, borderTopColor:GlobalStyles.colors.primary100,
     alignItems:'center'
-  },
-  btnContainer:{
-    flexDirection:'row',
-    justifyContent:'space-between', alignItems:'center'
-  },
-  btn:{
-    minWidth:120
   }
 })
 export default ManageExpenses;
