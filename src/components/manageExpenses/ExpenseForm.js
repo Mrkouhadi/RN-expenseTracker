@@ -3,12 +3,14 @@ import { StyleSheet, View } from 'react-native'
 
 import Input from './Input';
 import CustomBtn from '../../components/ui/CustomBtn';
+import { getFormattedDate } from '../../util/date';
 
 const ExpenseForm = ({onCancel, submitFormLabel, onSubmit, defaultValues}) => {
 
     const [inputValues, setInputValues] = useState({
         amount:defaultValues ? defaultValues.amount.toString() : "", 
-        date:defaultValues ? defaultValues.date.toISOString().slice(0,10) : "",
+        // date:defaultValues ? defaultValues.date.toISOString().slice(0,10) : "",
+        date:defaultValues ? getFormattedDate(defaultValues.date) : "",
         description:defaultValues ? defaultValues.description : "",
     });
     const inputChangeHandler =(inputIdentifier, inputvalue) =>{
