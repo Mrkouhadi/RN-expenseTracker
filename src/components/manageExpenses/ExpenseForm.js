@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { Alert, StyleSheet, View } from 'react-native'
 
 import Input from './Input';
 import CustomBtn from '../../components/ui/CustomBtn';
@@ -31,7 +31,10 @@ const ExpenseForm = ({onCancel, submitFormLabel, onSubmit, defaultValues}) => {
             const isValidDate = expenseValues.date.toString() !== 'Invalid Date';
             const isValidDesc = expenseValues.description.trim().length > 0;
 
-            if(!isValidAmount || !isValidDate || !isValidDesc) return;
+            if(!isValidAmount || !isValidDate || !isValidDesc){
+                Alert.alert("Invalid Input !", "Please make sure you fill in all inputs with the proper format !")
+                return;
+            }
 
             onSubmit(expenseValues);
     };
