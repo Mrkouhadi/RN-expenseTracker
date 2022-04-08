@@ -38,7 +38,7 @@ const ManageExpenses = ({route, navigation}) => {
 
   return  <View style={styles.container}>
             <ExpenseForm onSubmit={confirmHandler}  submitFormLabel={isEditing?'UPDATE':'ADD'} 
-                        editedExpense={selectedExpense} onCancel={cancelHandler} />
+                        defaultValues={selectedExpense} onCancel={cancelHandler} />
 
             {
              isEditing && <View style={styles.DelContainer}>

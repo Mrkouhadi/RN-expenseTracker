@@ -7,7 +7,9 @@ import CustomBtn from '../../components/ui/CustomBtn';
 const ExpenseForm = ({onCancel, submitFormLabel, onSubmit, defaultValues}) => {
 
     const [inputValues, setInputValues] = useState({
-        amount:`${defaultValues.amount}`, date:defaultValues.date, description:defaultValues.description,
+        amount:defaultValues ? defaultValues.amount.toString() : "", 
+        date:defaultValues ? defaultValues.date.toISOString().slice(0,10) : "",
+        description:defaultValues ? defaultValues.description : "",
     });
     const inputChangeHandler =(inputIdentifier, inputvalue) =>{
         setInputValues(currInputValues => {
