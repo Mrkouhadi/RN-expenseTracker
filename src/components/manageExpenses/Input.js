@@ -2,10 +2,10 @@ import React from 'react'
 import { StyleSheet, TextInput, View, Text } from 'react-native'
 import { GlobalStyles } from '../../constants/styles'
 
-const Input = ({label, descStyle, inputConfig}) => {
+const Input = ({label, descStyle,invalid, inputConfig}) => {
   return <View style={styles.container}>
-            <Text style={styles.label}>{label}</Text>
-            <TextInput style={[styles.input, {...descStyle}]} {...inputConfig} />
+            <Text style={[styles.label, styles.invalidLabel]}>{label}</Text>
+            <TextInput style={[styles.input, {...descStyle}, invalid && styles.invalidInput ]} {...inputConfig} />
         </View>
 }
 
@@ -26,5 +26,11 @@ const styles= StyleSheet.create({
         letterSpacing:2,
         fontSize:18,
     },
+    invalidLabel:{
+        color:GlobalStyles.colors.error500
+    },
+    invalidInput:{
+        backgroundColor:'pink',
+    }
 })
 export default Input

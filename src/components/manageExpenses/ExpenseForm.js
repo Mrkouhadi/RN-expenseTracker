@@ -4,23 +4,25 @@ import { Alert, StyleSheet, View, Text } from 'react-native'
 import Input from './Input';
 import CustomBtn from '../../components/ui/CustomBtn';
 import { getFormattedDate } from '../../util/date';
+import { GlobalStyles } from '../../constants/styles';
 
 const ExpenseForm = ({onCancel, submitFormLabel, onSubmit, defaultValues}) => {
 
     const [inputs, setInputs] = useState({
         amount:{
             value:defaultValues ? defaultValues.amount.toString() : "", 
-            isValid:!!defaultValues, // instead of : defaultValues ? true : false
+            isValid:true
         },
         date:{
             value:defaultValues ? getFormattedDate(defaultValues.date) : "",
-            isValid:!!defaultValues, // instead of : defaultValues ? true : false
+            isValid:true
         },
         description:{
             value:defaultValues ? defaultValues.description : "",
-            isValid:!!defaultValues, // instead of : defaultValues ? true : false
+            isValid:true
         }
     });
+    // !!defaultValues, // instead of : defaultValues ? true : false
     const inputChangeHandler =(inputIdentifier, inputvalue) =>{
         setInputs(currentInputs => {
             return {
@@ -55,15 +57,15 @@ const ExpenseForm = ({onCancel, submitFormLabel, onSubmit, defaultValues}) => {
     };
 
   return <View>
-            <Input label="Amount" inputConfig={{
+            <Input label="Amount" invalid={!inputs.amount.isValid} inputConfig={{
                 keyboardType:'decimal-pad',
                 onChangeText:inputChangeHandler.bind(this, 'amount'),
                 value:inputs.amount.value,
                 placeholder:'00.00',
-                 placeholderTextColor:"#808080",
+                placeholderTextColor:"#808080",
             }} />
             {!inputs.amount.isValid && <Text style={styles.errorText}>Error ! - Please double check your data !</Text>}
-            <Input label="Date" inputConfig={{
+            <Input label="Date" invalid={!inputs.date.isValid}  inputConfig={{
                 maxLength:10,
                 onChangeText:inputChangeHandler.bind(this, 'date'),
                 value:inputs.date.value,
@@ -71,14 +73,16 @@ const ExpenseForm = ({onCancel, submitFormLabel, onSubmit, defaultValues}) => {
                  placeholderTextColor:"#808080",
             }} />
              {!inputs.date.isValid && <Text style={styles.errorText}>Error ! - Please double check your data !</Text>}
-            <Input label="Description" descStyle={{minHeight:200, textAlignVertical:'top'}} inputConfig={{
-                autoCapitalize:'words', //characters, sentences(default) 
-                multiline:true,
-                onChangeText:inputChangeHandler.bind(this, 'description'),
-                value:inputs.description.value,
-                placeholder:'Type a description...',
-                placeholderTextColor:"#808080",
-            }} />
+            <Input label="Description" descStyle={{minHeight:200, textAlignVertical:'top'}} 
+                    invalid={!inputs.description.isValid} 
+                    inputConfig={{
+                        autoCapitalize:'words', //characters, sentences(default) 
+                        multiline:true,
+                        onChangeText:inputChangeHandler.bind(this, 'description'),
+                        value:inputs.description.value,
+                        placeholder:'Type a description...',
+                        placeholderTextColor:"#808080",
+                    }} />
             {!inputs.description.isValid && <Text style={styles.errorText}>Error ! - Please double check your data !</Text>}
             <View style={styles.btnContainer}>
               <CustomBtn style={styles.btn} mode="flat" onPress={onCancel}>CANCEL</CustomBtn>
@@ -96,8 +100,8 @@ const styles = StyleSheet.create({
   },
   errorText:{
       fontSize:16,
-      color:"red",
-      marginBottom:10
+      color:GlobalStyles.colors.error500,
+      margin:10
   }
 })
 export default ExpenseForm
