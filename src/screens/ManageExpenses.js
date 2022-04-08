@@ -10,6 +10,9 @@ const ManageExpenses = ({route, navigation}) => {
   const isEditing = !!expenseId; // if we got an id, it will return true, otherwise, false
   const ourExpenseCtx = useContext(ExpensesCtx);
 
+  const selectedExpense = ourExpenseCtx.expenses.find(exp => exp.id === expenseId);
+  
+
   useLayoutEffect(()=>{
     navigation.setOptions({
       title:isEditing ? "Update Your Expense" : "Add New Expense"
@@ -34,7 +37,8 @@ const ManageExpenses = ({route, navigation}) => {
 };
 
   return  <View style={styles.container}>
-            <ExpenseForm onSubmit={confirmHandler}  submitFormLabel={isEditing?'UPDATE':'ADD'} onCancel={cancelHandler} />
+            <ExpenseForm onSubmit={confirmHandler}  submitFormLabel={isEditing?'UPDATE':'ADD'} 
+                        editedExpense={selectedExpense} onCancel={cancelHandler} />
 
             {
              isEditing && <View style={styles.DelContainer}>
