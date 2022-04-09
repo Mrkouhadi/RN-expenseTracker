@@ -4,7 +4,7 @@ import ExpenseForm from '../components/manageExpenses/ExpenseForm';
 import IconBtn from '../components/ui/IconBtn';
 import { GlobalStyles } from '../constants/styles';
 import { ExpensesCtx } from '../store/Expenses-ctx';
-import { addExpenseToDb } from '../util/http';
+import { addExpenseToDb, updateExpenseInDb } from '../util/http';
 
 const ManageExpenses = ({route, navigation}) => {
   const expenseId = route.params?.id;  
@@ -30,7 +30,8 @@ const ManageExpenses = ({route, navigation}) => {
 
   const  confirmHandler = async DATA =>{
         if(isEditing){
-          ourExpenseCtx.updateExpense(expenseId, DATA)
+          ourExpenseCtx.updateExpense(expenseId, DATA);
+          await updateExpenseInDb(expenseId, DATA)
         }else{
           const id = await addExpenseToDb(DATA); // we store the object and get it ID
           ourExpenseCtx.addExpense({...DATA, id:id});
