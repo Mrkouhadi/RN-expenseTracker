@@ -9,7 +9,8 @@ const RecentExpenses = (props) => {
 
         useEffect(()=>{
           async function fetch(){
-            const expenses = await fetchExpensesFromDb()
+            const expenses = await fetchExpensesFromDb();
+            ourExpenseCtx.setExpenses(expenses);
           }
           fetch();
         },[]);

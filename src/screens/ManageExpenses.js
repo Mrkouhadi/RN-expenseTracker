@@ -28,12 +28,12 @@ const ManageExpenses = ({route, navigation}) => {
     navigation.goBack();
   };
 
-  const confirmHandler = DATA =>{
+  const  confirmHandler = async DATA =>{
         if(isEditing){
           ourExpenseCtx.updateExpense(expenseId, DATA)
         }else{
-          addExpenseToDb(DATA);
-          ourExpenseCtx.addExpense(DATA);
+          const id = await addExpenseToDb(DATA); // we store the object and get it ID
+          ourExpenseCtx.addExpense({...DATA, id:id});
         }
         navigation.goBack();
 };

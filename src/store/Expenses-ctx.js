@@ -1,13 +1,16 @@
 import React, { createContext, useReducer } from "react";
-import DUMMY_DATA from '../dummy_data';
 
 export const ExpensesCtx = createContext();
 
 const ExpenseReducer = (state, action) =>{
     switch (action.type) {
         case "ADD":
-            const ID = new Date().valueOf(); 
-            return [ {id:ID, ...action.payload} , ...state]
+            return [ action.payload , ...state]
+
+        case 'SET':
+            
+            return action.payload.reverse();
+
         case "UPDATE":
             const updateableExpenseIndex = state.findIndex(expense => expense.id === action.payload.id);
             const updateableExpense = state[updateableExpenseIndex];
@@ -24,10 +27,13 @@ const ExpenseReducer = (state, action) =>{
 }
 
 const ExpensesCtxProvider = ({children}) =>{
-    const [expenseState, dispatch] = useReducer(ExpenseReducer, DUMMY_DATA);
+    const [expenseState, dispatch] = useReducer(ExpenseReducer, []);
 
     const addExpense = (expensesData) =>{
         dispatch({ type:'ADD', payload:expensesData })
+    }
+    const setExpenses = (expensesData) =>{
+        dispatch({type:"SET", payload:expensesData})
     }
     const deleteExpense = (id) =>{
         dispatch({ type:'DELETE', payload:id })
@@ -39,6 +45,7 @@ const ExpensesCtxProvider = ({children}) =>{
     const value={
         expenses:expenseState,
         addExpense:addExpense,
+        setExpenses:setExpenses,
         deleteExpense:deleteExpense,
         updateExpense:updateExpense,
     }

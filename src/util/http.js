@@ -3,8 +3,10 @@ import axios from "axios";
 const BACKEND__URL = "https://rn-expensetracker-8e1d7-default-rtdb.firebaseio.com";
 
 
-export function addExpenseToDb(expenseData) {
-    axios.post(BACKEND__URL+"/expenses.json", expenseData)
+export async function addExpenseToDb(expenseData) {
+    const res = await axios.post(BACKEND__URL+"/expenses.json", expenseData);
+    const id = res.data.name; // firebase means by name an id
+    return id;
 }
 export async function fetchExpensesFromDb(){
     const res = await axios.get(BACKEND__URL+"/expenses.json");
@@ -20,4 +22,11 @@ export async function fetchExpensesFromDb(){
         expenses.push(expenseObj);
     }
     return expenses;
+}
+
+export const updateExpenseInDb = (id, expenseData)=>{
+    axios.put(BACKEND__URL+`expenses/${id}.json`, expenseData);
+}
+export const deleteExpenseIFromDb = (id, expenseData)=>{
+    axios.delete(BACKEND__URL+`expenses/${id}.json`, expenseData);
 }
