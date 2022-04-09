@@ -4,6 +4,7 @@ import ExpenseForm from '../components/manageExpenses/ExpenseForm';
 import IconBtn from '../components/ui/IconBtn';
 import { GlobalStyles } from '../constants/styles';
 import { ExpensesCtx } from '../store/Expenses-ctx';
+import { addExpenseToDb } from '../util/http';
 
 const ManageExpenses = ({route, navigation}) => {
   const expenseId = route.params?.id;  
@@ -31,6 +32,7 @@ const ManageExpenses = ({route, navigation}) => {
         if(isEditing){
           ourExpenseCtx.updateExpense(expenseId, DATA)
         }else{
+          addExpenseToDb(DATA);
           ourExpenseCtx.addExpense(DATA);
         }
         navigation.goBack();
