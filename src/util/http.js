@@ -6,6 +6,7 @@ const BACKEND__URL = "https://rn-expensetracker-8e1d7-default-rtdb.firebaseio.co
 export async function addExpenseToDb(expenseData) {
     const res = await axios.post(BACKEND__URL+"/expenses.json", expenseData);
     const id = res.data.name; // firebase means by name an id
+    console.log(id);
     return id;
 }
 export async function fetchExpensesFromDb(){
@@ -25,8 +26,8 @@ export async function fetchExpensesFromDb(){
 }
 
 export const updateExpenseInDb = (id, expenseData)=>{
-    return axios.put(BACKEND__URL+`expenses/${id}.json`, expenseData);
+    return axios.put(BACKEND__URL+`/expenses/${id}.json`, expenseData);
 }
 export const deleteExpenseIFromDb = id =>{
-    return axios.delete(BACKEND__URL+`expenses/${id}.json`);
+    return axios.delete(BACKEND__URL+`/expenses/${id}.json`);
 }
