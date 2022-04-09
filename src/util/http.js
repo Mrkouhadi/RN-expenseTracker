@@ -9,6 +9,8 @@ export async function addExpenseToDb(expenseData) {
     console.log(id);
     return id;
 }
+
+
 export async function fetchExpensesFromDb(){
     const res = await axios.get(BACKEND__URL+"/expenses.json");
     let expenses = [];
@@ -25,9 +27,12 @@ export async function fetchExpensesFromDb(){
     return expenses;
 }
 
+
 export const updateExpenseInDb = (id, expenseData)=>{
     return axios.put(BACKEND__URL+`/expenses/${id}.json`, expenseData);
 }
+
+
 export const deleteExpenseIFromDb = id =>{
     return axios.delete(BACKEND__URL+`/expenses/${id}.json`);
 }
