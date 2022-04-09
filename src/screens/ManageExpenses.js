@@ -4,7 +4,7 @@ import ExpenseForm from '../components/manageExpenses/ExpenseForm';
 import IconBtn from '../components/ui/IconBtn';
 import { GlobalStyles } from '../constants/styles';
 import { ExpensesCtx } from '../store/Expenses-ctx';
-import { addExpenseToDb, updateExpenseInDb } from '../util/http';
+import { addExpenseToDb, deleteExpenseIFromDb, updateExpenseInDb } from '../util/http';
 
 const ManageExpenses = ({route, navigation}) => {
   const expenseId = route.params?.id;  
@@ -20,7 +20,8 @@ const ManageExpenses = ({route, navigation}) => {
     })
   },[navigation,isEditing]);
 
-  const deleteHandler =() =>{
+  const deleteHandler =async () =>{
+   await deleteExpenseIFromDb(expenseId);
     ourExpenseCtx.deleteExpense(expenseId)
     navigation.goBack();
   }
