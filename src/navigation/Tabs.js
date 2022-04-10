@@ -30,16 +30,16 @@ const Tabs=(props)=> {
                                    />
             }}
     >
-      <Tab.Screen name="All Expenses" component={AllExpenses} options={{ 
-        tabBarIcon: ({focused,color,size}) => (<View style={{alignItems:'center',justifyContent:'center',top:Platform.OS === 'ios'?15:0}}>
-                              <Icon name="appstore1" color={color} size={size} />
-                              {focused && <Text style={{color:color}}>All</Text>}
-                          </View> )
-        }}/>
       <Tab.Screen name="Recent Expenses" component={ RecentExpenses} options={{ 
         tabBarIcon: ({focused,color,size}) => (<View style={{alignItems:'center',justifyContent:'center',top:Platform.OS === 'ios'?15:0}}>
                               <Ionicons name="wallet" color={color} size={size} />
                               {focused && <Text style={{color:color,marginTop:8 }}>Recent</Text>}
+                          </View> )
+        }}/>
+      <Tab.Screen name="All Expenses" component={AllExpenses} options={{ 
+        tabBarIcon: ({focused,color,size}) => (<View style={{alignItems:'center',justifyContent:'center',top:Platform.OS === 'ios'?15:0}}>
+                              <Icon name="appstore1" color={color} size={size} />
+                              {focused && <Text style={{color:color}}>All</Text>}
                           </View> )
         }}/>
     </Tab.Navigator>

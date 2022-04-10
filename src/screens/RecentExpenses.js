@@ -7,7 +7,7 @@ import { getDateMinusDays } from '../util/date';
 import { fetchExpensesFromDb } from '../util/http';
 
 const RecentExpenses = (props) => {
-        const [isFetching, setIsFetching] = useState("");
+        const [isFetching, setIsFetching] = useState();
         const [error, setError] = useState();
         const ourExpenseCtx = useContext(ExpensesCtx);
 

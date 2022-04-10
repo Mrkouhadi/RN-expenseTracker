@@ -4,6 +4,7 @@ import ExpensesOutput from '../components/expensesOutput/ExpensesOutput';
 import { ExpensesCtx } from '../store/Expenses-ctx';
 
 const AllExpenses = props => {
+
   const ourExpenseCtx = useContext(ExpensesCtx);
   return  <ExpensesOutput fallbackText="No Expenses Registered so Far !" expenses={ourExpenseCtx.expenses} expensesPeriod="Total"/>
 };
