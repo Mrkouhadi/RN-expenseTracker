@@ -1,5 +1,6 @@
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
+import { GlobalStyles } from '../../constants/styles'
 import ExpensesList from './ExpensesList'
 import ExpensesSummary from './ExpensesSummary'
 
@@ -19,7 +20,7 @@ const ExpensesOutput = ({expenses, expensesPeriod, fallbackText}) => {
 
 const styles = StyleSheet.create({
     constainer:{
-        backgroundColor:'pink',
+        backgroundColor:GlobalStyles.colors.gray700,
         paddingHorizontal:10, paddingVertical:10,
         paddingBottom:0,
         flex:1
