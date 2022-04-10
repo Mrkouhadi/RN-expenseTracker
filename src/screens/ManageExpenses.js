@@ -1,6 +1,7 @@
 import React, { useContext, useLayoutEffect, useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 import ExpenseForm from '../components/manageExpenses/ExpenseForm';
+import ErrorOverlay from '../components/ui/ErrorOverlay';
 import IconBtn from '../components/ui/IconBtn';
 import LoadingOverlay from '../components/ui/LoadingOverlay';
 import { GlobalStyles } from '../constants/styles';
@@ -11,9 +12,9 @@ const ManageExpenses = ({route, navigation}) => {
   const expenseId = route.params?.id;  
   const isEditing = !!expenseId; // if we got an id, it will return true, otherwise, false
   const ourExpenseCtx = useContext(ExpensesCtx);
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState();
   const selectedExpense = ourExpenseCtx.expenses.find(exp => exp.id === expenseId);
-  
 
   useLayoutEffect(()=>{
     navigation.setOptions({
@@ -23,28 +24,39 @@ const ManageExpenses = ({route, navigation}) => {
 
   const deleteHandler =async () =>{
     setIsSubmitting(true)
-    await deleteExpenseIFromDb(expenseId)
-    setIsSubmitting(false)
-    ourExpenseCtx.deleteExpense(expenseId)
-    navigation.goBack();
+    try{
+      await deleteExpenseIFromDb(expenseId)
+      ourExpenseCtx.deleteExpense(expenseId)
+      navigation.goBack();
+    }catch(err){
+      setError("Could not delete this item !")
+      setIsSubmitting(false);
+    }
   }
   const cancelHandler = () =>{
     navigation.goBack();
   };
 
-  const  confirmHandler = async DATA =>{
+    const  confirmHandler = async DATA =>{
         setIsSubmitting(true)
-        if(isEditing){
-          ourExpenseCtx.updateExpense(expenseId, DATA);
-          await updateExpenseInDb(expenseId, DATA)
-        }else{
-          const id = await addExpenseToDb(DATA); // we store the object and get it ID
-          ourExpenseCtx.addExpense({...DATA, id:id});
+        try{
+            if(isEditing){
+              ourExpenseCtx.updateExpense(expenseId, DATA);
+              await updateExpenseInDb(expenseId, DATA)
+            }else{
+              const id = await addExpenseToDb(DATA); // we store the object and get it ID
+              ourExpenseCtx.addExpense({...DATA, id:id});
+            }
+            navigation.goBack();
+        }catch{
+          setError("Could not delete this item !")
+          setIsSubmitting(false);
         }
-        setIsSubmitting(false)
-        navigation.goBack();
-};
+    };
+
+  if(error && !isSubmitting) return <ErrorOverlay message={error} />
   if(isSubmitting) return <LoadingOverlay />;
+
   return  <View style={styles.container}>
             <ExpenseForm onSubmit={confirmHandler}       submitFormLabel={isEditing?'UPDATE':'ADD'} 
                          defaultValues={selectedExpense} onCancel={cancelHandler} />
