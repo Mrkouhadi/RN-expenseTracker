@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         flexDirection:'row', alignItems:'center', justifyContent:'space-between',
         backgroundColor:GlobalStyles.colors.primary50,
         borderRadius:6,
-        marginBottom:5
+        marginBottom:5, marginTop:3
     },
     periodName:{
         fontSize:18,
